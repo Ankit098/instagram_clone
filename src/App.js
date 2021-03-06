@@ -1,7 +1,5 @@
 function App() {
-  return (
-    <h1>instagram clone</h1>
-  )
+  return <p>Instagram Clone</p>
 }
 
 export default App
