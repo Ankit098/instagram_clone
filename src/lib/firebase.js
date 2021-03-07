@@ -2,9 +2,6 @@ import Firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
-// for hydrating firestone with dummy data
-// import { seedDatabase } from '../seed'
-
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -16,7 +13,5 @@ const config = {
 
 const firebase = Firebase.initializeApp(config)
 const { FieldValue } = Firebase.firestore
-
-// seedDatabase(firebase)
 
 export { firebase, FieldValue }
