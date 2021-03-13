@@ -10,7 +10,7 @@ export async function doesUsernameExist(username) {
   return result.docs.length > 0
 }
 
-export async function getUserFromFirestoreByUserId(userId) {
+export async function getUserByUserId(userId) {
   const result = await firebase
     .firestore()
     .collection('users')
@@ -90,7 +90,7 @@ export async function getPhotos(userId, following) {
       if (photo.likes.includes(userId)) {
         userLikedPhoto = true
       }
-      const user = await getUserFromFirestoreByUserId(photo.userId)
+      const user = await getUserByUserId(photo.userId)
       const { username } = user[0]
       
       return { username, ...photo, userLikedPhoto }
