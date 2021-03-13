@@ -4,6 +4,8 @@ import { lazy, Suspense } from 'react'
 import * as ROUTES from './constants/routes'
 import useAuthListener from './hooks/use-auth-listener'
 import UserContext from './context/user'
+import ProtectedRoutes from './helpers/protectedRoutes'
+import IsUserLoggedIn from './helpers/isUserLoggedIn'
 import './styles/app.css'
 
 const Login = lazy(() => import('./pages/login'))
@@ -19,9 +21,15 @@ function App() {
       <Router>
         <Suspense fallback={<p>Loading....</p>}>
           <Switch>
-            <Route path={ROUTES.LOGIN} component={Login} />
-            <Route path={ROUTES.SIGNUP} component={SignUp} />
-            <Route path={ROUTES.DASHBOARD} component={Dashboard} exact />
+            <IsUserLoggedIn user={user} loggedInPath={ROUTES.DASHBOARD} path={ROUTES.LOGIN}>
+              <Login />
+            </IsUserLoggedIn>
+            <IsUserLoggedIn user={user} loggedInPath={ROUTES.DASHBOARD} path={ROUTES.SIGNUP}>
+              <SignUp />
+            </IsUserLoggedIn>
+            <ProtectedRoutes user={user} path={ROUTES.DASHBOARD} exact>
+              <Dashboard />
+            </ProtectedRoutes>
             <Route component={NotFound} />
           </Switch>
         </Suspense>
