@@ -11,6 +11,7 @@ import './styles/app.css'
 const Login = lazy(() => import('./pages/login'))
 const SignUp = lazy(() => import('./pages/signup'))
 const Dashboard = lazy(() => import('./pages/dashboard'))
+const Profile = lazy(() => import('./pages/profile'))
 const NotFound = lazy(() => import('./pages/notFound'))
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <ProtectedRoutes user={user} path={ROUTES.DASHBOARD} exact>
               <Dashboard />
             </ProtectedRoutes>
+            <Route path={ROUTES.PROFILE} component={Profile} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>
