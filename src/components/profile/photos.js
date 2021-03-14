@@ -48,7 +48,7 @@ export default function Photos({ photos }) {
           ) : null
         )}
       </div>
-      {!photos || (photos.length === 0) && <p className='text-center text-2xl'>No posts yet!</p>}
+      {!photos || (photos.length === 0 && <p className='text-center text-2xl'>No posts yet!</p>)}
     </div>
   )
 }
